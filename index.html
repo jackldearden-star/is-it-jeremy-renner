@@ -429,7 +429,7 @@
         max_tokens: 500,
         messages: [{ role: 'user', content: [
           { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
-          { type: 'text', text: 'You are the world\'s leading Jeremy Renner identification expert. Is Jeremy Renner in this image?\n\nRespond ONLY with JSON (no markdown):\n{"verdict":"YES"|"NO"|"UNSURE","confidence":0-100,"reason":"1-2 sentences"}' }
+          { type: 'text', text: 'You are the world\'s leading Jeremy Renner identification expert with deep knowledge of his appearance at every stage of life from the 1990s to present day.\n\nJeremy Renner physical traits across all ages:\n- FACE SHAPE: Strong, square jaw that has been consistent his entire life. Prominent, wide cheekbones.\n- EYES: Deep-set, heavy-lidded blue-green eyes with a distinctive intense, slightly brooding expression. Strong brow ridge.\n- NOSE: Straight, slightly broad nose with a defined tip.\n- LIPS: Full lips with a defined cupid\'s bow, often with a slight smirk.\n- BUILD: Compact, athletic, muscular build even when young.\n- YOUNG (1990s-early 2000s): Leaner face, lighter brown hair sometimes worn longer, but the jaw and eyes are unmistakable.\n- MIDDLE (2000s-2010s): More defined musculature, shorter hair, more chiseled jaw.\n- RECENT (2010s-present): Salt and pepper stubble or beard, slightly fuller face, but same distinctive jaw and eyes.\n- KEY IDENTIFIER: The combination of heavy-lidded intense eyes + square jaw + wide cheekbones is unique to Renner at ANY age.\n\nAnalyze carefully. Do not dismiss a match just because the person looks young or the photo is old.\n\nRespond ONLY with JSON (no markdown):\n{"verdict":"YES"|"NO"|"UNSURE","confidence":0-100,"reason":"1-2 sentences noting specific features"}' }
         ]}]
       })
     })
@@ -446,12 +446,12 @@
   }
 
   function showResult(r) {
-    const labels = { YES: "YES — That's Jeremy Renner.", NO: "NO — This is not Jeremy Renner.", UNSURE: "UNSURE — Possibly Jeremy Renner." };
+    const labels = { YES: "YES — This is Jeremy Renner.", NO: "NO — This is not Jeremy Renner.", UNSURE: "UNSURE — Could be Jeremy Renner." };
     const el = document.getElementById('res-title');
     el.textContent = labels[r.verdict] || r.verdict;
     el.className = 'res-title ' + r.verdict.toLowerCase();
-    document.getElementById('res-conf').textContent = 'Confidence: ' + Math.round(r.confidence) + '%  ·  Cached · Similar pages';
-    document.getElementById('res-reason').textContent = r.reason;
+    document.getElementById('res-conf').textContent = 'Confidence: ' + Math.round(r.confidence) + '%';
+    document.getElementById('res-reason').style.display = 'none';
     document.getElementById('result-overlay').classList.add('show');
   }
 
