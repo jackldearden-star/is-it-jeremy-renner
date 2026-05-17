@@ -335,7 +335,7 @@
 <script>
   // =========================================================
   // 🔧 PASTE YOUR CLOUDFLARE WORKER URL HERE
-  const WORKER_URL = 'https://renner-proxy.jackldearden.workers.dev/';
+  const WORKER_URL = 'https://renner-proxy.jackldearden.workers.dev';
   // =========================================================
 
   let cameraStream = null;
@@ -486,12 +486,18 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     .then(data => {
       hideLoading();
       try {
+        if (data.error) {
+          showError('Gemini API error: ' + (data.error.message || JSON.stringify(data.error)));
+          return;
+        }
         const text = data.candidates[0].content.parts[0].text;
-        const clean = text.replace(/```json|```/g, '').trim();
-        const parsed = JSON.parse(clean);
+        // Strip markdown fences, extract just the JSON object
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error('No JSON found');
+        const parsed = JSON.parse(jsonMatch[0]);
         showResult(parsed);
       } catch (e) {
-        showError('Could not parse the result. Please try again.');
+        showError('Could not parse the result. Please try again. (Debug: ' + e.message + ')');
       }
     })
     .catch(() => showError('Network error. Make sure the Worker URL is set correctly.'));
