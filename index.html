@@ -3,128 +3,158 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Is it Him?</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,900;1,900&family=Barlow:wght@600;700&display=swap" rel="stylesheet" />
+<title>Is it Jeremy Renner? - Google Search</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    width: 100%; height: 100%;
-    overflow: hidden;
-    background: #000;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Barlow', sans-serif;
-    background: #00aacc;
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+  }
+
+  /* Top bar */
+  .topbar {
+    background: #fff;
+    padding: 6px 8px 0;
+    border-bottom: 1px solid #ebebeb;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: 100vh;
-    overflow: hidden;
+    gap: 12px;
   }
 
-  /* Jeremy photos on sides */
-  .renner-left, .renner-right {
-    position: fixed;
-    top: 0; bottom: 0;
-    width: 18vw;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    opacity: 0.85;
-  }
-  .renner-left { left: 0; background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Jeremy_Renner_by_Gage_Skidmore.jpg/440px-Jeremy_Renner_by_Gage_Skidmore.jpg'); }
-  .renner-right { right: 0; background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Jeremy_Renner_by_Gage_Skidmore.jpg/440px-Jeremy_Renner_by_Gage_Skidmore.jpg'); transform: scaleX(-1); }
-
-  .main {
-    position: relative;
-    z-index: 1;
-    width: 64vw;
-    min-width: 320px;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    height: 100vh;
-    background: #00aacc;
-    padding: 0;
-  }
-
-  /* Header */
-  .header {
-    padding: 6px 20px 2px;
-    text-align: center;
+  .google-logo {
+    font-size: 26px;
+    font-family: arial, sans-serif;
+    letter-spacing: -1px;
+    line-height: 1;
     flex-shrink: 0;
   }
+  .google-logo span:nth-child(1) { color: #3333cc; }
+  .google-logo span:nth-child(2) { color: #cc0000; }
+  .google-logo span:nth-child(3) { color: #ffcc00; }
+  .google-logo span:nth-child(4) { color: #3333cc; }
+  .google-logo span:nth-child(5) { color: #00aa00; }
+  .google-logo span:nth-child(6) { color: #cc0000; }
 
-  .title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    font-size: clamp(52px, 9vw, 86px);
-    line-height: 0.9;
-    color: #003344;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-  }
-
-  .subtitle {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 11px;
-    color: #003344;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.6;
-    margin-top: 2px;
-  }
-
-  /* Live cam area */
-  .cam-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 0 8px 4px;
-    min-height: 0;
-  }
-
-  .live-label {
+  .search-row {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 14px;
-    color: #003344;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 3px;
-    flex-shrink: 0;
-  }
-
-  .live-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: #ff2222;
-    animation: pulse 1.2s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
-
-  .cam-wrap {
     flex: 1;
+  }
+
+  .search-box {
+    border: 1px solid #7e9db9;
+    padding: 3px 6px;
+    font-size: 15px;
+    font-family: arial, sans-serif;
+    width: 480px;
+    max-width: 60vw;
+    color: #000;
+    outline: none;
+    background: #fff;
+  }
+
+  .search-btn {
+    background: #dcdcdc;
+    border: 1px solid #aaa;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-family: arial, sans-serif;
+    cursor: pointer;
+    color: #000;
+  }
+  .search-btn:hover { background: #c8c8c8; }
+
+  .adv-link {
+    font-size: 11px;
+    color: #77c;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .adv-link:hover { text-decoration: underline; }
+
+  /* Nav tabs */
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    padding: 4px 0 0 144px;
+    border-bottom: 1px solid #ebebeb;
+    background: #fff;
+  }
+  .nav-tab {
+    font-size: 13px;
+    padding: 4px 10px;
+    color: #77c;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .nav-tab.active {
+    color: #000;
+    border-bottom: 2px solid #dd4b39;
+    font-weight: bold;
+  }
+  .nav-tab:hover:not(.active) { text-decoration: underline; }
+
+  /* Results area */
+  .results-wrap {
+    display: flex;
+    gap: 0;
+  }
+
+  .left-col {
+    padding: 8px 0 8px 144px;
+    flex: 1;
+    min-width: 0;
+    max-width: 600px;
+  }
+
+  .results-count {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+
+  /* Camera / upload result card styled as search result */
+  .cam-result {
+    margin-bottom: 20px;
+  }
+
+  .cam-title {
+    font-size: 18px;
+    color: #11c;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2px;
+    cursor: default;
+  }
+
+  .cam-url {
+    font-size: 13px;
+    color: #093;
+    margin-bottom: 4px;
+  }
+
+  .cam-snippet {
+    font-size: 13px;
+    color: #000;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  /* The camera box itself styled like an image result inline */
+  .cam-box {
     position: relative;
-    background: #003344;
-    border-radius: 4px;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 4/3;
+    background: #000;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
     overflow: hidden;
-    min-height: 0;
   }
 
   #camera-video {
@@ -134,201 +164,262 @@
     transform: scaleX(-1);
   }
 
-  .cam-placeholder {
+  .cam-offline {
     position: absolute; inset: 0;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    gap: 12px;
-    color: rgba(0,200,255,0.4);
+    background: #f1f1f1;
+    color: #777;
+    font-size: 13px;
+    gap: 6px;
   }
-  .cam-placeholder i { font-size: 48px; }
-  .cam-placeholder p {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 16px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-  }
-  .cam-placeholder.hidden { display: none; }
+  .cam-offline.hidden { display: none; }
 
-  /* Result overlay on cam */
-  .cam-result-overlay {
+  /* Result overlay */
+  .result-overlay {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    background: rgba(0,30,50,0.88);
-    padding: 12px 16px;
+    background: rgba(255,255,255,0.95);
+    border-top: 1px solid #ccc;
+    padding: 8px 10px;
     display: none;
-    animation: slideUp 0.25s ease;
   }
-  .cam-result-overlay.show { display: block; }
-  @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .result-overlay.show { display: block; }
 
-  .overlay-verdict {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    font-size: 36px;
-    text-transform: uppercase;
-    line-height: 1;
+  .res-title {
+    font-size: 16px;
+    color: #11c;
+    font-weight: bold;
     margin-bottom: 2px;
   }
-  .overlay-verdict.yes { color: #44ff88; }
-  .overlay-verdict.no { color: #ff4444; }
-  .overlay-verdict.unsure { color: #ffcc44; }
+  .res-title.yes { color: #093; }
+  .res-title.no { color: #c00; }
+  .res-title.unsure { color: #e67700; }
 
-  .overlay-confidence {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 4px;
+  .res-conf {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 3px;
   }
 
-  .overlay-reason {
-    font-size: 12px;
-    color: rgba(255,255,255,0.7);
+  .res-reason {
+    font-size: 13px;
+    color: #000;
     line-height: 1.4;
   }
 
-  /* Submit button */
-  .submit-row {
-    padding: 4px 8px 6px;
-    flex-shrink: 0;
-    display: flex;
-    gap: 8px;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: #003344;
-    border: none;
-    color: #00aacc;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: background 0.15s, transform 0.1s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .btn-submit:hover { background: #004a66; }
-  .btn-submit:active { transform: scale(0.98); }
-  .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .btn-upload {
-    background: rgba(0,51,68,0.5);
-    border: 2px solid #003344;
-    color: #003344;
-    padding: 14px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: background 0.15s;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    white-space: nowrap;
-  }
-  .btn-upload:hover { background: rgba(0,51,68,0.25); }
-
-  #file-input { display: none; }
-
-  /* Loading overlay on cam */
+  /* Loading */
   .loading-overlay {
     position: absolute; inset: 0;
-    background: rgba(0,30,50,0.7);
+    background: rgba(255,255,255,0.8);
     display: none;
     align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px;
+    font-size: 13px; color: #777;
   }
   .loading-overlay.show { display: flex; }
-  .spinner {
-    width: 36px; height: 36px;
-    border: 3px solid rgba(0,200,255,0.2);
-    border-top-color: #00aacc;
-    border-radius: 50%;
-    animation: spin 0.75s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-overlay p {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+
+  /* Buttons row */
+  .action-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
   }
 
-  /* Error */
-  .error-box {
-    display: none;
-    margin: 0 12px 8px;
-    background: rgba(180,40,40,0.3);
-    border: 1.5px solid rgba(255,80,80,0.4);
-    border-radius: 4px;
-    padding: 10px 14px;
-    color: #ffaaaa;
+  .btn-capture {
+    background: #dcdcdc;
+    border: 1px solid #aaa;
+    padding: 4px 12px;
     font-size: 13px;
-    font-weight: 600;
-    flex-shrink: 0;
+    font-family: arial, sans-serif;
+    cursor: pointer;
+    color: #000;
   }
-  .error-box.show { display: block; }
+  .btn-capture:hover { background: #c8c8c8; }
+  .btn-capture:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-upload-label {
+    background: #dcdcdc;
+    border: 1px solid #aaa;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-family: arial, sans-serif;
+    cursor: pointer;
+    color: #000;
+    display: inline-block;
+  }
+  .btn-upload-label:hover { background: #c8c8c8; }
+  #file-input { display: none; }
+
+  .error-msg {
+    display: none;
+    font-size: 13px;
+    color: #c00;
+    margin-bottom: 8px;
+  }
+  .error-msg.show { display: block; }
+
+  /* Fake search results below */
+  .fake-result {
+    margin-bottom: 20px;
+  }
+  .fake-result-title {
+    font-size: 18px;
+    color: #11c;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .fake-result-url { font-size: 13px; color: #093; margin-bottom: 3px; }
+  .fake-result-snippet { font-size: 13px; color: #000; line-height: 1.5; }
+  .fake-result-snippet b { font-weight: bold; }
+
+  /* Right sidebar */
+  .right-col {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-left: 1px solid #ebebeb;
+    margin-left: 20px;
+  }
+
+  .sidebar-ad {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 6px;
+  }
+  .sidebar-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .sidebar-item-title { font-size: 13px; color: #11c; text-decoration: underline; cursor: pointer; display: block; margin-bottom: 2px; }
+  .sidebar-item-url { font-size: 11px; color: #093; margin-bottom: 2px; }
+  .sidebar-item-desc { font-size: 12px; color: #000; line-height: 1.4; }
 
   canvas#snap { display: none; }
 </style>
 </head>
 <body>
 
-<div class="renner-left"></div>
-<div class="renner-right"></div>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="google-logo">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+  </div>
+  <div class="search-row">
+    <input class="search-box" type="text" value="is this jeremy renner" readonly />
+    <button class="search-btn">Search</button>
+    <a class="adv-link" href="#">Advanced Search<br>Preferences</a>
+  </div>
+</div>
 
-<div class="main">
-  <div class="header">
-    <h1 class="title">Is it Him?</h1>
-    <p class="subtitle">Presented by Jeremy Renner App Too</p>
+<!-- Nav tabs -->
+<div class="nav-tabs">
+  <span class="nav-tab active">Web</span>
+  <span class="nav-tab">Images</span>
+  <span class="nav-tab">Video</span>
+  <span class="nav-tab">News</span>
+  <span class="nav-tab">Maps</span>
+  <span class="nav-tab">more »</span>
+</div>
+
+<!-- Results -->
+<div class="results-wrap">
+  <div class="left-col">
+    <div class="results-count">Results 1 - 10 of about 2,840,000 for <b>is this jeremy renner</b>. (0.14 seconds)</div>
+
+    <!-- Camera result -->
+    <div class="cam-result">
+      <span class="cam-title">Live Camera Feed — Jeremy Renner Detection Tool</span>
+      <div class="cam-url">jeremyrennerapp.com/is-it-him › live-detection</div>
+      <div class="cam-snippet">Point your camera at a face to determine if it is <b>Jeremy Renner</b>, the 2-time Academy Award nominated actor known for <b>Hawkeye</b>, The Hurt Locker, and Mission: Impossible. Results powered by AI. <b>...</b></div>
+
+      <div class="cam-box">
+        <div class="cam-offline" id="cam-offline">
+          <span>&#128247; Camera loading…</span>
+        </div>
+        <video id="camera-video" autoplay playsinline></video>
+        <div class="loading-overlay" id="loading-overlay">Analyzing image…</div>
+        <div class="result-overlay" id="result-overlay">
+          <div class="res-title" id="res-title"></div>
+          <div class="res-conf" id="res-conf"></div>
+          <div class="res-reason" id="res-reason"></div>
+        </div>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <div class="action-row">
+        <button class="btn-capture" id="btn-capture" onclick="captureAndAnalyze()">Submit Photo</button>
+        <label class="btn-upload-label">
+          Upload Image
+          <input type="file" id="file-input" accept="image/*" onchange="handleFile(event)" />
+        </label>
+      </div>
+    </div>
+
+    <!-- Fake results -->
+    <div class="fake-result">
+      <a class="fake-result-title">Is <b>Jeremy Renner</b> in this photo? - Yahoo! Answers</a>
+      <div class="fake-result-url">answers.yahoo.com › Entertainment &amp; Music › Celebrities</div>
+      <div class="fake-result-snippet">14 answers · My friend thinks this is <b>Jeremy Renner</b> but I'm not sure. He has similar eyes and that jawline looks right. Best answer: That is definitely <b>Jeremy Renner</b>, you can tell by the way he <b>...</b></div>
+    </div>
+
+    <div class="fake-result">
+      <a class="fake-result-title"><b>Jeremy Renner</b> - Wikipedia, the free encyclopedia</a>
+      <div class="fake-result-url">en.wikipedia.org/wiki/Jeremy_Renner</div>
+      <div class="fake-result-snippet"><b>Jeremy Lee Renner</b> (born January 7, 1971) is an American actor and musician. He is known for his roles as Clint Barton / Hawkeye in the Marvel Cinematic Universe and as Aaron Cross in The Bourne Legacy <b>...</b></div>
+    </div>
+
+    <div class="fake-result">
+      <a class="fake-result-title">How to identify <b>Jeremy Renner</b> in a crowd - WikiHow</a>
+      <div class="fake-result-url">wikihow.com › Identify-Jeremy-Renner</div>
+      <div class="fake-result-snippet">Look for these key features: strong jawline, piercing blue-green eyes, medium brown hair, and an intensity in the brow. <b>Jeremy Renner</b> is often described as having a distinctive <b>...</b></div>
+    </div>
+
+    <div class="fake-result">
+      <a class="fake-result-title">NOT <b>Jeremy Renner</b> - a helpful guide - GeoCities</a>
+      <div class="fake-result-url">geocities.com/renner_fan_4ever/not_renner.html</div>
+      <div class="fake-result-snippet">A comprehensive photo guide of people who are NOT <b>Jeremy Renner</b>. Updated daily. If you are unsure whether the person you are looking at is <b>Jeremy Renner</b>, consult this page first <b>...</b></div>
+    </div>
+
+    <p style="font-size:13px; color:#777; margin-top:16px;">
+      <span style="color:#11c; cursor:pointer;">Goooooooooogle</span><br><br>
+      <span style="cursor:pointer; color:#11c;">1</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">2</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">3</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">4</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">5</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">6</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">7</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">8</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">9</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">10</span>&nbsp;
+      <span style="cursor:pointer; color:#11c;">Next »</span>
+    </p>
   </div>
 
-  <div class="cam-section">
-    <div class="live-label">
-      <div class="live-dot"></div>
-      Live Cam
+  <!-- Right sidebar -->
+  <div class="right-col">
+    <div class="sidebar-ad">Sponsored Links</div>
+    <div class="sidebar-item">
+      <a class="sidebar-item-title">JeremyRenner.com Official</a>
+      <div class="sidebar-item-url">www.jeremyrenner.com</div>
+      <div class="sidebar-item-desc">The official Jeremy Renner app. Connect with Jeremy directly.</div>
     </div>
-    <div class="cam-wrap">
-      <div class="cam-placeholder" id="cam-placeholder">
-        <i class="ti ti-camera-off"></i>
-        <p>Starting camera…</p>
-      </div>
-      <video id="camera-video" autoplay playsinline></video>
-      <div class="loading-overlay" id="loading-overlay">
-        <div class="spinner"></div>
-        <p>Analyzing…</p>
-      </div>
-      <div class="cam-result-overlay" id="cam-result-overlay">
-        <div class="overlay-verdict" id="overlay-verdict"></div>
-        <div class="overlay-confidence" id="overlay-confidence"></div>
-        <div class="overlay-reason" id="overlay-reason"></div>
-      </div>
+    <div class="sidebar-item">
+      <a class="sidebar-item-title">Is That Renner? Pro Tool</a>
+      <div class="sidebar-item-url">isitrenner.com/pro</div>
+      <div class="sidebar-item-desc">Advanced Jeremy Renner facial detection. 99.7% accuracy guaranteed.</div>
     </div>
-  </div>
-
-  <div class="error-box" id="error-box"></div>
-
-  <div class="submit-row">
-    <button class="btn-submit" id="btn-submit" onclick="captureAndAnalyze()">
-      <i class="ti ti-camera"></i> Submit Photo
-    </button>
-    <button class="btn-upload" onclick="document.getElementById('file-input').click()">
-      <i class="ti ti-upload"></i> Upload
-    </button>
-    <input type="file" id="file-input" accept="image/*" onchange="handleFile(event)" />
+    <div class="sidebar-item">
+      <a class="sidebar-item-title">Hawkeye Costumes &amp; Merch</a>
+      <div class="sidebar-item-url">www.marvel-shop.com/hawkeye</div>
+      <div class="sidebar-item-desc">Official Hawkeye gear. As worn by Jeremy Renner in the MCU.</div>
+    </div>
   </div>
 </div>
 
@@ -338,17 +429,16 @@
   const WORKER_URL = 'https://renner-proxy.jackldearden.workers.dev';
   let cameraStream = null;
 
-  // Auto-start camera on load
-  window.addEventListener('load', () => { startCamera(); });
+  window.addEventListener('load', startCamera);
 
   async function startCamera() {
     try {
-      cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } } });
+      cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
       const video = document.getElementById('camera-video');
       video.srcObject = cameraStream;
-      document.getElementById('cam-placeholder').classList.add('hidden');
+      document.getElementById('cam-offline').classList.add('hidden');
     } catch(e) {
-      document.getElementById('cam-placeholder').querySelector('p').textContent = 'Camera unavailable';
+      document.getElementById('cam-offline').innerHTML = '<span style="color:#c00">Camera unavailable — use Upload instead</span>';
     }
   }
 
@@ -359,8 +449,7 @@
     reader.onload = ev => {
       const base64 = ev.target.result.split(',')[1];
       const mediaType = ev.target.result.split(';')[0].split(':')[1];
-      clearResult();
-      showLoading();
+      clearResult(); showLoading();
       callWorker(base64, mediaType);
     };
     reader.readAsDataURL(f);
@@ -368,22 +457,13 @@
 
   function captureAndAnalyze() {
     const video = document.getElementById('camera-video');
-    if (!cameraStream || !video.videoWidth) {
-      showError('Camera not ready. Please allow camera access and try again.');
-      return;
-    }
+    if (!cameraStream || !video.videoWidth) { showError('Camera not ready.'); return; }
     const canvas = document.getElementById('snap');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth; canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     const base64 = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    clearResult();
-    showLoading();
+    clearResult(); showLoading();
     callWorker(base64, 'image/jpeg');
-  }
-
-  function buildPrompt() {
-    return 'You are the world\'s leading Jeremy Renner identification expert. Look at this image and determine if Jeremy Renner — the actor known for Hawkeye, The Hurt Locker, and Mission: Impossible — is present.\n\nRespond ONLY with a JSON object (no markdown, no backticks) with these exact fields:\n- "verdict": one of "YES", "NO", or "UNSURE"\n- "confidence": a number 0-100\n- "reason": a 1-2 sentence explanation';
   }
 
   function callWorker(base64, mediaType) {
@@ -395,45 +475,39 @@
         max_tokens: 500,
         messages: [{ role: 'user', content: [
           { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
-          { type: 'text', text: buildPrompt() }
+          { type: 'text', text: 'You are the world\'s leading Jeremy Renner identification expert. Look at this image and determine if Jeremy Renner is present.\n\nRespond ONLY with a JSON object (no markdown) with:\n- "verdict": "YES", "NO", or "UNSURE"\n- "confidence": 0-100\n- "reason": 1-2 sentences' }
         ]}]
       })
     })
     .then(r => r.json())
     .then(data => {
       hideLoading();
+      if (data.error) { showError('Error: ' + (data.error.message || JSON.stringify(data.error))); return; }
       try {
-        if (data.error) { showError('API error: ' + (data.error.message || JSON.stringify(data.error))); return; }
         const text = data.content.map(c => c.text || '').join('');
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error('no json');
-        const parsed = JSON.parse(jsonMatch[0]);
+        const parsed = JSON.parse(text.match(/\{[\s\S]*\}/)[0]);
         showResult(parsed);
-      } catch(e) { showError('Could not parse result. Try again.'); }
+      } catch(e) { showError('Could not parse result.'); }
     })
-    .catch(() => showError('Network error. Please try again.'));
+    .catch(() => showError('Network error.'));
   }
 
   function showResult(r) {
-    const labels = { YES: "Yes. That's him.", NO: "Nope. Not Renner.", UNSURE: "Unclear..." };
-    document.getElementById('overlay-verdict').textContent = labels[r.verdict] || r.verdict;
-    document.getElementById('overlay-verdict').className = 'overlay-verdict ' + r.verdict.toLowerCase();
-    document.getElementById('overlay-confidence').textContent = 'Confidence: ' + Math.round(r.confidence) + '%';
-    document.getElementById('overlay-reason').textContent = r.reason;
-    document.getElementById('cam-result-overlay').classList.add('show');
+    const labels = { YES: "YES — That's Jeremy Renner.", NO: "NO — This is not Jeremy Renner.", UNSURE: "UNSURE — Possibly Jeremy Renner." };
+    const el = document.getElementById('res-title');
+    el.textContent = labels[r.verdict] || r.verdict;
+    el.className = 'res-title ' + r.verdict.toLowerCase();
+    document.getElementById('res-conf').textContent = 'Confidence: ' + Math.round(r.confidence) + '%  |  Cached · Similar pages';
+    document.getElementById('res-reason').textContent = r.reason;
+    document.getElementById('result-overlay').classList.add('show');
   }
 
   function showLoading() { document.getElementById('loading-overlay').classList.add('show'); }
   function hideLoading() { document.getElementById('loading-overlay').classList.remove('show'); }
-  function showError(msg) {
-    hideLoading();
-    const el = document.getElementById('error-box');
-    el.textContent = msg;
-    el.classList.add('show');
-  }
+  function showError(msg) { hideLoading(); const el = document.getElementById('error-msg'); el.textContent = msg; el.classList.add('show'); }
   function clearResult() {
-    document.getElementById('cam-result-overlay').classList.remove('show');
-    document.getElementById('error-box').classList.remove('show');
+    document.getElementById('result-overlay').classList.remove('show');
+    document.getElementById('error-msg').classList.remove('show');
   }
 </script>
 </body>
