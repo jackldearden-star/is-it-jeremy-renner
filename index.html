@@ -264,9 +264,10 @@
     <div class="cam-result">
       <span class="cam-title">Live Camera — Jeremy Renner Detection Tool</span>
       <div class="cam-url">jeremyrennerapp.com/is-it-him › live-detection</div>
-      <div class="cam-snippet">Point your camera at a face to determine if it is <b>Jeremy Renner</b>. Results powered by AI. <b>...</b></div>
+      <div class="cam-snippet">Point your camera at a face to determine if it is <b>Jeremy Renner</b>. <b>...</b></div>
 
       <div class="cam-box">
+        <img id="uploaded-preview" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Uploaded" />
         <div class="cam-offline" id="cam-offline">📷 Camera loading…</div>
         <video id="camera-video" autoplay playsinline></video>
         <div class="loading-overlay" id="loading-overlay">Analyzing image…</div>
@@ -279,11 +280,21 @@
 
       <div class="error-msg" id="error-msg"></div>
 
-      <div class="action-row">
+      <!-- Camera mode buttons -->
+      <div class="action-row" id="action-row-camera">
         <button class="btn-capture" onclick="captureAndAnalyze()">Submit Photo</button>
         <label class="btn-upload-label">
           Upload Image
           <input type="file" id="file-input" accept="image/*" onchange="handleFile(event)" />
+        </label>
+      </div>
+      <!-- Uploaded image mode buttons -->
+      <div class="action-row" id="action-row-upload" style="display:none;">
+        <button class="btn-capture" onclick="analyzeUpload()">Submit Photo</button>
+        <button class="btn-capture" onclick="switchToCamera()">&#8617; Back to Webcam</button>
+        <label class="btn-upload-label">
+          Upload Different
+          <input type="file" id="file-input-2" accept="image/*" onchange="handleFile(event)" />
         </label>
       </div>
     </div>
@@ -357,15 +368,46 @@
     }
   }
 
+  let uploadedBase64 = null;
+  let uploadedMediaType = null;
+
   function handleFile(e) {
     const f = e.target.files[0];
     if (!f) return;
     const reader = new FileReader();
     reader.onload = ev => {
-      clearResult(); showLoading();
-      callWorker(ev.target.result.split(',')[1], ev.target.result.split(';')[0].split(':')[1]);
+      uploadedBase64 = ev.target.result.split(',')[1];
+      uploadedMediaType = ev.target.result.split(';')[0].split(':')[1];
+      // Show image in the cam box
+      const preview = document.getElementById('uploaded-preview');
+      preview.src = ev.target.result;
+      preview.style.display = 'block';
+      // Hide video, show upload mode buttons
+      document.getElementById('camera-video').style.visibility = 'hidden';
+      document.getElementById('action-row-camera').style.display = 'none';
+      document.getElementById('action-row-upload').style.display = 'flex';
+      clearResult();
     };
     reader.readAsDataURL(f);
+  }
+
+  function analyzeUpload() {
+    if (!uploadedBase64) return;
+    clearResult(); showLoading();
+    callWorker(uploadedBase64, uploadedMediaType);
+  }
+
+  function switchToCamera() {
+    // Hide uploaded image, restore video
+    const preview = document.getElementById('uploaded-preview');
+    preview.style.display = 'none';
+    preview.src = '';
+    uploadedBase64 = null;
+    uploadedMediaType = null;
+    document.getElementById('camera-video').style.visibility = 'visible';
+    document.getElementById('action-row-camera').style.display = 'flex';
+    document.getElementById('action-row-upload').style.display = 'none';
+    clearResult();
   }
 
   function captureAndAnalyze() {
