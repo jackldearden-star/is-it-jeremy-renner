@@ -277,7 +277,7 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     if (!url) return;
     clearState(); showLoading();
     callWorker({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 500,
       messages: [{ role: 'user', content: [
         { type: 'image', source: { type: 'url', url } },
@@ -292,7 +292,7 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     const base64 = currentImageData.split(',')[1];
     const mediaType = currentImageData.split(';')[0].split(':')[1];
     callWorker({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 500,
       messages: [{ role: 'user', content: [
         { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
@@ -335,7 +335,7 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     const base64 = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
     clearState(); showLoading();
     callWorker({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 500,
       messages: [{ role: 'user', content: [
         { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } },
