@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: #0a0a0a;
@@ -19,13 +18,7 @@
     justify-content: center;
     padding: 2rem 1rem;
   }
-
-  .app {
-    width: 100%;
-    max-width: 600px;
-    position: relative;
-  }
-
+  .app { width: 100%; max-width: 600px; position: relative; }
   .app::before {
     content: '';
     position: fixed;
@@ -37,7 +30,6 @@
     pointer-events: none;
     z-index: 0;
   }
-
   .header { margin-bottom: 2rem; position: relative; z-index: 1; }
   .title {
     font-family: 'Bebas Neue', sans-serif;
@@ -46,20 +38,8 @@
     color: #fff;
     line-height: 1;
   }
-  .subtitle {
-    font-size: 12px;
-    color: #555;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  .tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 1.5rem;
-    position: relative; z-index: 1;
-  }
+  .subtitle { font-size: 12px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; position: relative; z-index: 1; }
   .tab {
     background: transparent;
     border: 0.5px solid #2a2a2a;
@@ -76,10 +56,8 @@
   .tab i { font-size: 15px; }
   .tab.active { background: #8B2FC9; border-color: #8B2FC9; color: #fff; }
   .tab:hover:not(.active) { border-color: #444; color: #bbb; }
-
   .panel { display: none; position: relative; z-index: 1; }
   .panel.active { display: block; }
-
   .url-row { display: flex; gap: 8px; margin-bottom: 12px; }
   .url-row input {
     flex: 1;
@@ -94,7 +72,6 @@
   }
   .url-row input::placeholder { color: #444; }
   .url-row input:focus { outline: none; border-color: #8B2FC9; }
-
   .btn-primary {
     background: #8B2FC9;
     border: none;
@@ -112,7 +89,6 @@
   .btn-primary:hover { background: #a040e8; }
   .btn-primary:active { transform: scale(0.97); }
   .btn-primary:disabled { background: #222; color: #555; cursor: not-allowed; }
-
   .drop-zone {
     border: 1.5px dashed #2a2a2a;
     border-radius: 10px;
@@ -127,17 +103,9 @@
   .drop-zone .dz-main { color: #555; font-size: 14px; }
   .drop-zone .dz-hint { color: #333; font-size: 12px; margin-top: 6px; }
   #file-input { display: none; }
-
   .preview-wrap { margin-top: 14px; text-align: center; }
-  .preview-wrap img {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    border: 0.5px solid #222;
-    object-fit: contain;
-  }
+  .preview-wrap img { max-width: 100%; max-height: 300px; border-radius: 8px; border: 0.5px solid #222; object-fit: contain; }
   .preview-actions { margin-top: 10px; }
-
   .cam-wrap {
     background: #0e0e0e;
     border-radius: 10px;
@@ -151,7 +119,6 @@
   .cam-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #333; text-align: center; padding: 2rem; }
   .cam-placeholder i { font-size: 44px; }
   .cam-placeholder p { font-size: 13px; color: #444; }
-
   .cam-controls { display: flex; gap: 8px; margin-top: 12px; }
   .btn-secondary {
     flex: 1;
@@ -170,90 +137,39 @@
   .btn-secondary:hover:not(:disabled) { border-color: #8B2FC9; color: #c07af0; }
   .btn-secondary:disabled { opacity: 0.3; cursor: not-allowed; }
   .btn-secondary.active { background: #8B2FC9; border-color: #8B2FC9; color: #fff; }
-
   canvas#snap { display: none; }
-
   .loading-state {
-    display: none;
-    align-items: center;
-    gap: 12px;
-    padding: 1.25rem 1.5rem;
-    background: #0e0e0e;
-    border-radius: 10px;
-    margin-top: 1.5rem;
-    border: 0.5px solid #1a1a1a;
+    display: none; align-items: center; gap: 12px;
+    padding: 1.25rem 1.5rem; background: #0e0e0e;
+    border-radius: 10px; margin-top: 1.5rem; border: 0.5px solid #1a1a1a;
   }
   .loading-state.show { display: flex; }
   .spinner {
     width: 18px; height: 18px;
-    border: 2px solid #222;
-    border-top-color: #8B2FC9;
-    border-radius: 50%;
-    animation: spin 0.75s linear infinite;
-    flex-shrink: 0;
+    border: 2px solid #222; border-top-color: #8B2FC9;
+    border-radius: 50%; animation: spin 0.75s linear infinite; flex-shrink: 0;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-state p { color: #666; font-size: 14px; }
-
   .error-box {
-    display: none;
-    background: #120808;
-    border: 0.5px solid #3a1818;
-    border-radius: 8px;
-    padding: 12px 16px;
-    color: #c06060;
-    font-size: 13px;
-    margin-top: 1rem;
+    display: none; background: #120808; border: 0.5px solid #3a1818;
+    border-radius: 8px; padding: 12px 16px; color: #c06060; font-size: 13px; margin-top: 1rem;
   }
   .error-box.show { display: block; }
-
   .result-box {
-    margin-top: 1.5rem;
-    background: #0e0e0e;
-    border-radius: 10px;
-    padding: 1.5rem;
-    border: 0.5px solid #1a1a1a;
-    display: none;
+    margin-top: 1.5rem; background: #0e0e0e; border-radius: 10px;
+    padding: 1.5rem; border: 0.5px solid #1a1a1a; display: none;
     animation: fadeIn 0.3s ease;
   }
   .result-box.show { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-  .verdict {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 8vw, 52px);
-    letter-spacing: 3px;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
+  .verdict { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 8vw, 52px); letter-spacing: 3px; line-height: 1; margin-bottom: 4px; }
   .verdict.yes { color: #6ee67a; }
-  .verdict.no  { color: #e65959; }
+  .verdict.no { color: #e65959; }
   .verdict.unsure { color: #e6b959; }
-
-  .confidence {
-    font-size: 12px;
-    color: #555;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .reason {
-    font-size: 14px;
-    color: #aaa;
-    line-height: 1.65;
-    border-top: 0.5px solid #1e1e1e;
-    padding-top: 12px;
-  }
-
-  .footer {
-    margin-top: 3rem;
-    text-align: center;
-    font-size: 11px;
-    color: #2a2a2a;
-    letter-spacing: 1px;
-    position: relative; z-index: 1;
-  }
+  .confidence { font-size: 12px; color: #555; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
+  .reason { font-size: 14px; color: #aaa; line-height: 1.65; border-top: 0.5px solid #1e1e1e; padding-top: 12px; }
+  .footer { margin-top: 3rem; text-align: center; font-size: 11px; color: #2a2a2a; letter-spacing: 1px; position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -262,23 +178,14 @@
     <h1 class="title">Is it Jeremy Renner?</h1>
     <p class="subtitle">Powered by AI · The only tool that matters</p>
   </div>
-
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('upload')">
-      <i class="ti ti-upload"></i> Upload / URL
-    </button>
-    <button class="tab" onclick="switchTab('camera')">
-      <i class="ti ti-camera"></i> Live Camera
-    </button>
+    <button class="tab active" onclick="switchTab('upload')"><i class="ti ti-upload"></i> Upload / URL</button>
+    <button class="tab" onclick="switchTab('camera')"><i class="ti ti-camera"></i> Live Camera</button>
   </div>
-
-  <!-- Upload Panel -->
   <div id="panel-upload" class="panel active">
     <div class="url-row">
       <input type="text" id="img-url" placeholder="Paste an image URL…" onkeydown="if(event.key==='Enter') analyzeFromUrl()" />
-      <button class="btn-primary" onclick="analyzeFromUrl()">
-        <i class="ti ti-scan"></i> Scan
-      </button>
+      <button class="btn-primary" onclick="analyzeFromUrl()"><i class="ti ti-scan"></i> Scan</button>
     </div>
     <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
       <i class="ti ti-photo"></i>
@@ -289,14 +196,10 @@
     <div class="preview-wrap" id="preview-wrap" style="display:none;">
       <img id="preview-img" src="" alt="Preview" />
       <div class="preview-actions">
-        <button class="btn-primary" onclick="analyzePreview()">
-          <i class="ti ti-eye-scan"></i> Analyze this image
-        </button>
+        <button class="btn-primary" onclick="analyzePreview()"><i class="ti ti-eye-scan"></i> Analyze this image</button>
       </div>
     </div>
   </div>
-
-  <!-- Camera Panel -->
   <div id="panel-camera" class="panel">
     <div class="cam-wrap">
       <div class="cam-placeholder" id="cam-placeholder">
@@ -307,36 +210,24 @@
     </div>
     <canvas id="snap"></canvas>
     <div class="cam-controls">
-      <button class="btn-secondary active" id="cam-toggle" onclick="toggleCamera()">
-        <i class="ti ti-player-play"></i> Start Camera
-      </button>
-      <button class="btn-secondary" id="btn-capture" onclick="captureAndAnalyze()" disabled>
-        <i class="ti ti-camera"></i> Capture &amp; Scan
-      </button>
+      <button class="btn-secondary active" id="cam-toggle" onclick="toggleCamera()"><i class="ti ti-player-play"></i> Start Camera</button>
+      <button class="btn-secondary" id="btn-capture" onclick="captureAndAnalyze()" disabled><i class="ti ti-camera"></i> Capture &amp; Scan</button>
     </div>
   </div>
-
   <div class="loading-state" id="loading-state">
     <div class="spinner"></div>
     <p>Consulting the Jeremy Renner Recognition Engine™…</p>
   </div>
-
   <div class="error-box" id="error-box"></div>
-
   <div class="result-box" id="result-box">
     <div class="verdict" id="verdict"></div>
     <div class="confidence" id="confidence"></div>
     <div class="reason" id="reason"></div>
   </div>
-
   <p class="footer">NOT AFFILIATED WITH JEREMY RENNER · FOR ENTERTAINMENT PURPOSES</p>
 </div>
-
 <script>
-  // =========================================================
-  // 🔧 PASTE YOUR CLOUDFLARE WORKER URL HERE
   const WORKER_URL = 'https://renner-proxy.jackldearden.workers.dev';
-  // =========================================================
 
   let cameraStream = null;
   let currentImageData = null;
@@ -359,10 +250,7 @@
     clearState();
   }
 
-  function handleFile(e) {
-    const f = e.target.files[0];
-    if (f) processFile(f);
-  }
+  function handleFile(e) { const f = e.target.files[0]; if (f) processFile(f); }
 
   function processFile(file) {
     const reader = new FileReader();
@@ -375,7 +263,7 @@
     reader.readAsDataURL(file);
   }
 
-  function buildPromptText() {
+  function buildPrompt() {
     return `You are the world's leading Jeremy Renner identification expert. Look at this image and determine if Jeremy Renner — the actor known for Hawkeye, The Hurt Locker, and Mission: Impossible — is present.
 
 Respond ONLY with a JSON object (no markdown, no backticks) with these exact fields:
@@ -387,34 +275,30 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
   function analyzeFromUrl() {
     const url = document.getElementById('img-url').value.trim();
     if (!url) return;
-    clearState();
-    showLoading();
-
-    // For URLs, fetch the image and convert to base64
-    fetch(url)
-      .then(r => {
-        if (!r.ok) throw new Error('Could not fetch image');
-        return r.blob();
-      })
-      .then(blob => {
-        const reader = new FileReader();
-        reader.onload = ev => {
-          const base64 = ev.target.result.split(',')[1];
-          const mediaType = blob.type || 'image/jpeg';
-          callWorker(base64, mediaType);
-        };
-        reader.readAsDataURL(blob);
-      })
-      .catch(() => showError('Could not load that image URL. Try downloading the image and uploading it directly.'));
+    clearState(); showLoading();
+    callWorker({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 500,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'url', url } },
+        { type: 'text', text: buildPrompt() }
+      ]}]
+    });
   }
 
   function analyzePreview() {
     if (!currentImageData) return;
-    clearState();
-    showLoading();
+    clearState(); showLoading();
     const base64 = currentImageData.split(',')[1];
     const mediaType = currentImageData.split(';')[0].split(':')[1];
-    callWorker(base64, mediaType);
+    callWorker({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 500,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
+        { type: 'text', text: buildPrompt() }
+      ]}]
+    });
   }
 
   async function toggleCamera() {
@@ -422,7 +306,6 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     const video = document.getElementById('camera-video');
     const placeholder = document.getElementById('cam-placeholder');
     const captureBtn = document.getElementById('btn-capture');
-
     if (cameraStream) {
       cameraStream.getTracks().forEach(t => t.stop());
       cameraStream = null;
@@ -440,43 +323,28 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
         btn.innerHTML = '<i class="ti ti-player-pause"></i> Stop Camera';
         btn.classList.remove('active');
         captureBtn.disabled = false;
-      } catch (e) {
-        showError('Camera access denied or not available on this device.');
-      }
+      } catch (e) { showError('Camera access denied or not available.'); }
     }
   }
 
   function captureAndAnalyze() {
     const video = document.getElementById('camera-video');
     const canvas = document.getElementById('snap');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth; canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     const base64 = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    clearState();
-    showLoading();
-    callWorker(base64, 'image/jpeg');
+    clearState(); showLoading();
+    callWorker({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 500,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } },
+        { type: 'text', text: buildPrompt() }
+      ]}]
+    });
   }
 
-  function callWorker(base64, mediaType) {
-    const body = {
-      contents: [{
-        parts: [
-          {
-            inline_data: {
-              mime_type: mediaType,
-              data: base64
-            }
-          },
-          { text: buildPromptText() }
-        ]
-      }],
-      generationConfig: {
-        temperature: 0.1,
-        maxOutputTokens: 500
-      }
-    };
-
+  function callWorker(body) {
     fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -486,21 +354,15 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
     .then(data => {
       hideLoading();
       try {
-        if (data.error) {
-          showError('Gemini API error: ' + (data.error.message || JSON.stringify(data.error)));
-          return;
-        }
-        const text = data.candidates[0].content.parts[0].text;
-        // Strip markdown fences, extract just the JSON object
+        if (data.error) { showError('API error: ' + (data.error.message || JSON.stringify(data.error))); return; }
+        const text = data.content.map(c => c.text || '').join('');
         const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error('No JSON found');
+        if (!jsonMatch) throw new Error('No JSON in response');
         const parsed = JSON.parse(jsonMatch[0]);
         showResult(parsed);
-      } catch (e) {
-        showError('Could not parse the result. Please try again. (Debug: ' + e.message + ')');
-      }
+      } catch (e) { showError('Could not parse result. Please try again.'); }
     })
-    .catch(() => showError('Network error. Make sure the Worker URL is set correctly.'));
+    .catch(() => showError('Network error. Please try again.'));
   }
 
   function showResult(r) {
@@ -514,12 +376,7 @@ Respond ONLY with a JSON object (no markdown, no backticks) with these exact fie
 
   function showLoading() { document.getElementById('loading-state').classList.add('show'); }
   function hideLoading() { document.getElementById('loading-state').classList.remove('show'); }
-  function showError(msg) {
-    hideLoading();
-    const el = document.getElementById('error-box');
-    el.textContent = msg;
-    el.classList.add('show');
-  }
+  function showError(msg) { hideLoading(); const el = document.getElementById('error-box'); el.textContent = msg; el.classList.add('show'); }
   function clearState() {
     document.getElementById('result-box').classList.remove('show');
     document.getElementById('error-box').classList.remove('show');
